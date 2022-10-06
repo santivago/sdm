@@ -7,12 +7,12 @@ import {
 import { defineStore } from "pinia";
 import { auth } from "../firebaseConfig";
 import router from "../router";
+import { useDatabaseStore } from "./database";
 
 export const useUserStore = defineStore("userStore", {
   state: () => ({
     userData: null,
     loadingUser: false,
-    loadingSession: false,
   }),
   actions: {
     async registerUser(email, password) {
@@ -48,6 +48,8 @@ export const useUserStore = defineStore("userStore", {
       }
     },
     async logoutUser() {
+      const databaseStore = useDatabaseStore();
+      databaseStore.$reset();
       try {
         await signOut(auth);
         this.userData = null;
@@ -65,6 +67,8 @@ export const useUserStore = defineStore("userStore", {
               this.userData = { email: user.email, uid: user.id };
             } else {
               this.userData = null;
+              const databaseStore = useDatabaseStore();
+              databaseStore.$reset();
             }
             resolve(user);
           },

@@ -1,5 +1,10 @@
 <template>
-  <component :is="$route.meta.layout"></component>
+  <div>
+    <br />
+    <br />
+    <br />
+    usersssssssssssssssssssssss
+  </div>
 </template>
 
 <script setup></script>

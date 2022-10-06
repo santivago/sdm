@@ -46,6 +46,11 @@ import { useUserStore } from "../stores/user";
 import BtnBorder from "../components/BtnBorder.vue";
 import Btn from "../components/Btn.vue";
 import Card from "../components/Card.vue";
+import { useDatabaseStore } from "../stores/database";
+
+const databaseStore = useDatabaseStore();
+
+databaseStore.getCorsi();
 
 const cards = [
   {
